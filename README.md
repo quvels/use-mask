@@ -8,8 +8,6 @@ npm install @quvels/use-mask
 
 ## Quick start
 
-**Running**
-
 ```typescript
 import { ChangeEvent, useState } from 'react';
 import './App.css';
@@ -89,7 +87,7 @@ useMask('+#{1,3} (###) ###-####', {
 
 **Card number**
 ```typescript
-useMask('#{1,3}.#{1,3}.#{1,3}.#{1,3}', {
+useMask('####-####-####-####', {
     '#': /[0-9]/,
 });
 ```
