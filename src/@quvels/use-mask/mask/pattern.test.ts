@@ -41,6 +41,39 @@ describe('mask pattern module', () => {
     ]);
   });
 
+  it('should return a card number mask', () => {
+    assert.deepEqual(createPattern('####-####-####-####', { '#': /[0-9]/ }), [
+      { regex: /[0-9]/, count: 1 },
+      { regex: /[0-9]/, count: 1 },
+      { regex: /[0-9]/, count: 1 },
+      { regex: /[0-9]/, count: 1 },
+      '-',
+      { regex: /[0-9]/, count: 1 },
+      { regex: /[0-9]/, count: 1 },
+      { regex: /[0-9]/, count: 1 },
+      { regex: /[0-9]/, count: 1 },
+      '-',
+      { regex: /[0-9]/, count: 1 },
+      { regex: /[0-9]/, count: 1 },
+      { regex: /[0-9]/, count: 1 },
+      { regex: /[0-9]/, count: 1 },
+      '-',
+      { regex: /[0-9]/, count: 1 },
+      { regex: /[0-9]/, count: 1 },
+      { regex: /[0-9]/, count: 1 },
+      { regex: /[0-9]/, count: 1 },
+    ]);
+
+    assert.deepEqual(createPattern('(#{3}) #{3}-#{4}', { '#': /[0-9]/ }), [
+      '(',
+      { regex: /[0-9]/, count: 3 },
+      ') ',
+      { regex: /[0-9]/, count: 3 },
+      '-',
+      { regex: /[0-9]/, count: 4 },
+    ]);
+  });
+
   it('should return a phone with country code mask pattern', () => {
     assert.deepEqual(createPattern('+#{1,3} (#{3}) #{3}-#{4}', { '#': /[0-9]/ }), [
       '+',

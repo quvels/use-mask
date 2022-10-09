@@ -8,7 +8,7 @@ const mask = (text: string, pattern: Pattern): [string, string] => {
 
   let textIndex = 0;
   let maskIndex = 0;
-  let lastMaskRegexIndex = 0;
+  let lastMaskRegexIndex = -1;
   let currentMaskCount = 0;
 
   while (textIndex < textArray.length && maskIndex < pattern.length) {

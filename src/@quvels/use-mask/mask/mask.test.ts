@@ -21,6 +21,14 @@ describe('mask module', () => {
     assert.deepEqual(mask('000 000-0000', phoneNumberMaskPattern), ['(000) 000-0000', '0000000000']);
   });
 
+  it('should mask a card number', () => {
+    const phoneNumberMaskPattern = createPattern('####-####-####-####', {
+      '#': /[0-9]/,
+    });
+
+    assert.deepEqual(mask('1234123412341234', phoneNumberMaskPattern), ['1234-1234-1234-1234', '1234123412341234']);
+  });
+
   it('should mask a phone number with country code', () => {
     const phoneNumberMaskPattern = createPattern('+#{1,3} (#{3}) #{3}-#{4}', {
       '#': /[0-9]/,
@@ -76,6 +84,7 @@ describe('mask module', () => {
     assert.deepEqual(mask('(000)', pattern), ['(000|', '000']);
     assert.deepEqual(mask('(0*******0)', pattern), ['(0|0)', '00']);
     assert.deepEqual(mask('(01*******0)', pattern), ['(01|0)', '010']);
+    assert.deepEqual(mask('(|0)', pattern), ['(|0)', '0']);
 
     pattern = createPattern('+#{1,3} (#{3}) #{3}-#{4}', {
       '#': /[0-9]/,

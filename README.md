@@ -19,7 +19,7 @@ function App() {
   const [maskedValue, setMaskedValue] = useState('');
   const [realValue, setRealValue] = useState('');
 
-  const mask = useMask('(#{3}) #{3}-#{4}', {
+  const mask = useMask('(###) ###-####', {
     '#': /[0-9]/,
   });
 
@@ -47,6 +47,51 @@ function App() {
 }
 
 export default App;
+```
+**useMask**
+```typescript
+useMask(regex: string, patterns?: Patterns) => (string) => [string, string]
+```
+| Props      | Description                                          |
+| :----:     | :------------                                        |
+| regex      | A string value with a regex pattern used for masking |
+| patterns?  | A pattern configuration                              |
+
+***Return***
+```typescript
+(string) => [string, string]
+```
+A function that recevies a string and returns a tuple that the first value is the "masked value" and the second is the "real value"
+
+**Tokens**
+
+| Token  | Description                          |
+| :----: | :------------                        |
+| *      | zero or more                         |
+| {n}    | n times                              |
+| {l, m} | at least l times and maximum m times |
+
+### Examples
+
+**Phone number**
+```typescript
+useMask('(###) ###-####', {
+    '#': /[0-9]/,
+});
+```
+
+**Phone number with country code**
+```typescript
+useMask('+#{1,3} (###) ###-####', {
+    '#': /[0-9]/,
+});
+```
+
+**Card number**
+```typescript
+useMask('#{1,3}.#{1,3}.#{1,3}.#{1,3}', {
+    '#': /[0-9]/,
+});
 ```
 
 ## Development
