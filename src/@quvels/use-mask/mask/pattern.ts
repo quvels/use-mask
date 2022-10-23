@@ -25,7 +25,7 @@ const appendChar = (maskPattern: Pattern, char: string) => {
   }
 };
 
-const createPattern = (regex: string, patterns?: Patterns) => {
+const createPattern = (regex: string, patterns: Patterns) => {
   const patternRegex =
     /(?<token>(?<char>[^{}\\,])(?:{(?<count>[0-9]+)}|(?:{(?<min>[0-9]+),(?<max>[0-9]+)})|(?<infinity>\*))?|(?:\\(?<escaped>[a-z0-9{}\\,])))/gi;
   let match: RegExpExecArray | null = null;

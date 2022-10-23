@@ -1,5 +1,5 @@
-import { assert, describe, expect, it, vi } from 'vitest';
-import { act, renderHook } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+import { renderHook } from '@testing-library/react';
 import useMask from './use-mask';
 import { Patterns } from '../mask/pattern';
 
@@ -9,8 +9,7 @@ describe('useMask hook', () => {
   it('should create the pattern once', async () => {
     const pattern = await import('../mask/pattern');
     pattern.createPattern = vi.fn().mockResolvedValue([]);
-    const useMaskHook = () => useMask;
-    const { result, rerender } = renderHook(({ regex, patterns }) => useMask(regex, patterns), {
+    const { rerender } = renderHook(({ regex, patterns }) => useMask(regex, patterns), {
       initialProps: {
         regex: '',
         patterns: {},
@@ -26,7 +25,7 @@ describe('useMask hook', () => {
   it('should re create the pattern when regex is changed', async () => {
     const pattern = await import('../mask/pattern');
     pattern.createPattern = vi.fn().mockResolvedValue([]);
-    const { result, rerender } = renderHook(({ regex, patterns }) => useMask(regex, patterns), {
+    const { rerender } = renderHook(({ regex, patterns }) => useMask(regex, patterns), {
       initialProps: {
         regex: '',
         patterns: {},
@@ -42,8 +41,8 @@ describe('useMask hook', () => {
   it('should re create the pattern when patterns is changed', async () => {
     const pattern = await import('../mask/pattern');
     pattern.createPattern = vi.fn().mockResolvedValue([]);
-    let patterns: Patterns = { '': /[0-9]/ };
-    const { result, rerender } = renderHook(({ regex, patterns }) => useMask(regex, patterns), {
+    const patterns: Patterns = { '': /[0-9]/ };
+    const { rerender } = renderHook(({ regex, patterns }) => useMask(regex, patterns), {
       initialProps: {
         regex: '',
         patterns,
