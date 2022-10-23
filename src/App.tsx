@@ -6,7 +6,7 @@ function App() {
   const [maskedValue, setMaskedValue] = useState('');
   const [realValue, setRealValue] = useState('');
 
-  const mask = useMask('(#{3}) #{3}-#{4}', {
+  const mask = useMask('(###) ###-####', {
     '#': /[0-9]/,
   });
 

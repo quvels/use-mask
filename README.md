@@ -10,7 +10,6 @@ npm install @quvels/use-mask
 
 ```typescript
 import { ChangeEvent, useState } from 'react';
-import './App.css';
 import { useMask } from '@quvels/use-mask';
 
 function App() {
